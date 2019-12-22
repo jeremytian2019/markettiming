@@ -175,12 +175,12 @@ def drawdown_details(prices, ascending=True, index_type=pd.DatetimeIndex):
 
     for i in range(0, len(start)):
         dd = drawdown[start[i]:end[i]].min()
-        idxmin = drawdown[start[i]:end[i]].argmin()  # 期间最大回撤发生日
+        idx_min = drawdown[start[i]:end[i]].argmin()  # 期间最大回撤发生日
 
         if index_type is pd.DatetimeIndex:
-            result.iloc[i] = (start[i], idxmin, end[i], (end[i] - start[i]).days, dd)
+            result.iloc[i] = (start[i], idx_min, end[i], (end[i] - start[i]).days, dd)
         else:
-            result.iloc[i] = (start[i], idxmin, end[i], (end[i] - start[i]), dd)
+            result.iloc[i] = (start[i], idx_min, end[i], (end[i] - start[i]), dd)
 
     if ascending:
         result = result.sort_values(by='Drawdown(%)', ascending=True)
