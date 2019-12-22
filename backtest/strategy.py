@@ -104,9 +104,9 @@ class Strategy(ABC):
         self.feed = feed[start_date:end_date]
         self._sch = Scheduler()
         self._logger = logger
-        # 设置backtest, broker对象, 以及将自身实例放在调度器的runner_list中
+        # 设置strategy, broker对象, 以及将自身实例放在调度器的runner_list中
         self._sch.add_runner(self)
-        self._sch.add_backtest(self)
+        self._sch.add_strategy(self)
 
         broker = Broker(commission, slippage)
         self._sch.add_broker(broker)
